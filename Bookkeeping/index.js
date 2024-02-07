@@ -4,10 +4,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 mongoose.connect("mongodb://127.0.0.1:27017/bookkeeping");
+
 //处理 querystring 格式的请求体
 let urlParser = bodyParser.urlencoded({ extended: false });
 //处理 JSON 格式的请求体
 let jsonParser = bodyParser.json();
+
 const test = mongoose.model(
   "newtest",
   new mongoose.Schema({
@@ -16,6 +18,7 @@ const test = mongoose.model(
   }),
   "newtest"
 );
+
 app.get("/", (req, res) => {
   res.send("success");
 });
@@ -30,6 +33,7 @@ app.get("/insertnames", async (req, res) => {
   });
   res.send();
 });
+
 app.get("/names", async (req, res) => {
   test.find({ name: "1111" }).then((err, res) => {
     if (err) {
